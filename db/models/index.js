@@ -1,48 +1,35 @@
-// "use strict";
+const { User, UserSchema } = require("./user.model");
+const { Customer, CustomerSchema } = require("./customer.model");
+const { Category, CategorySchema } = require("./category.model");
+const { Product, ProductSchema } = require("./product.model");
+const { ProductMl, ProductMlSchema } = require("./productMl.model");
+const { ProductWeb, ProductWebSchema } = require("./productWeb.model");
+const { UserMl, UserMlSchema } = require("./userMl.model");
+const { Setting, SettingSchema } = require("./setting.model");
+// const { Order, OrderSchema } = require('./order.model');
+// const { OrderProduct, OrderProductSchema } = require('./order-product.model');
 
-// const fs = require("fs");
-// const path = require("path");
-// const Sequelize = require("sequelize-oracle");
+function setupModels(sequelize) {
+  User.init(UserSchema, User.config(sequelize));
+  Customer.init(CustomerSchema, Customer.config(sequelize));
+  Category.init(CategorySchema, Category.config(sequelize));
+  Product.init(ProductSchema, Product.config(sequelize));
+  ProductMl.init(ProductMlSchema, ProductMl.config(sequelize));
+  ProductWeb.init(ProductWebSchema, ProductWeb.config(sequelize));
+  UserMl.init(UserMlSchema, UserMl.config(sequelize));
+  Setting.init(SettingSchema, Setting.config(sequelize));
+  // Order.init(OrderSchema, Order.config(sequelize));
+  // OrderProduct.init(OrderProductSchema, OrderProduct.config(sequelize));
 
-// const process = require("process");
-// const basename = path.basename(__filename);
-// const env = process.env.NODE_ENV || "development";
-// const config = require(__dirname + "/../config/config.json")[env];
-// const db = {};
+  User.associate(sequelize.models);
+  Customer.associate(sequelize.models);
+  Category.associate(sequelize.models);
+  Product.associate(sequelize.models);
+  ProductMl.associate(sequelize.models);
+  ProductWeb.associate(sequelize.models);
+  UserMl.associate(sequelize.models);
+  Setting.associate(sequelize.models);
+  // Order.associate(sequelize.models);
+}
 
-// let sequelize;
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-// } else {
-//   sequelize = new Sequelize(
-//     config.database,
-//     config.username,
-//     config.password,
-//     config
-//   );
-// }
-
-// fs.readdirSync(__dirname)
-//   .filter((file) => {
-//     return (
-//       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-//     );
-//   })
-//   .forEach((file) => {
-//     const model = require(path.join(__dirname, file))(
-//       sequelize,
-//       Sequelize.DataTypes
-//     );
-//     db[model.name] = model;
-//   });
-
-// Object.keys(db).forEach((modelName) => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
-
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
-
-// module.exports = db;
+module.exports = setupModels;

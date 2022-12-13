@@ -1,7 +1,7 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize');
 
-const { config } = require("./../config/config");
-const setupModels = require("./../db/models");
+const { config } = require('./../config/config');
+const setupModels = require('./../db/models');
 
 // const USER = encodeURIComponent(config.dbUser);
 // const PASSWORD = encodeURIComponent(config.dbPassword);
@@ -23,15 +23,14 @@ const setupModels = require("./../db/models");
 // const sequelize = new Sequelize(URI, options);
 //
 
-console.log(config.dbUser, config.dbPassword);
 const sequelize = new Sequelize({
-  dialect: "oracle",
+  dialect: 'oracle',
   username: config.dbUser,
-  // logging: config.isProd ? false : console.log,
+  logging: config.isProd ? false : console.log,
   password: config.dbPassword,
-  dialectOptions: { connectString: "labranzas_high" },
+  dialectOptions: { connectString: config.dbConnectString },
 });
 
-// setupModels(sequelize);
+setupModels(sequelize);
 
 module.exports = sequelize;

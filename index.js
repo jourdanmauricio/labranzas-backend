@@ -1,28 +1,47 @@
+const express = require('express');
+const routerApi = require('./routes');
+const cors = require('cors');
+const app = express();
+
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
-const express = require("express");
-const routerApi = require("./routes");
-const app = express();
-app.use(express.json());
+const {
+  logErrors,
+  errorHandler,
+  boomErrorHandler,
+  ormErrorHandler,
+} = require('./middlewares/error.handler');
 
-const ProductService = require("./services/product.service");
-const service = new ProductService();
+// const whiteList = ['http://localhost:8080', 'https://my-app.com'];
+// const options = {
+//   origen: (origen, callback) => {
+//     if (whiteList.includes(origen) || !origen) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Acceso no permitido'));
+//     }
+//   },
+// };
 
-app.get("/", async (req, res) => {
-  // res.send("Hola mi server en Express");
-  try {
-    const tasks = await service.find();
-    res.json(tasks);
-  } catch (error) {
-    console.log(error);
-  }
+// app.use(cors(options));
+app.use(cors());
+require('./utils/auth');
+app.get('/', (req, res) => {
+  res.send('Hola mi server en Express');
 });
 
-// const getConnection = require("./libs/oracle");
+app.get('/nueva-ruta', (req, res) => {
+  res.send('Soy una nueva ruta!!!');
+});
 
-// const connection = getConnection();
+routerApi(app);
 
-// routerApi(app);
+app.use(logErrors);
+app.use(ormErrorHandler);
+app.use(boomErrorHandler);
+app.use(errorHandler);
+
 app.listen(port, () => {
-  console.log(`Listen at pot ${port}...`);
+  console.log(`Listen at port ${port}...`);
 });
