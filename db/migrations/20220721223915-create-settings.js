@@ -1,7 +1,6 @@
 'use strict';
 
 const { DataTypes, Sequelize } = require('sequelize');
-const { USER_TABLE } = require('./../models/user.model');
 const { SETTING_TABLE } = require('./../models/setting.model');
 
 module.exports = {
@@ -12,17 +11,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
-      },
-      user_id: {
-        allowNull: true,
-        type: DataTypes.INTEGER,
-        unique: true,
-        references: {
-          model: USER_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
       setting: {
         allowNull: false,

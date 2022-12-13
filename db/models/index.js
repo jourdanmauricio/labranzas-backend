@@ -1,11 +1,11 @@
-const { User, UserSchema } = require("./user.model");
-const { Customer, CustomerSchema } = require("./customer.model");
-const { Category, CategorySchema } = require("./category.model");
-const { Product, ProductSchema } = require("./product.model");
-const { ProductMl, ProductMlSchema } = require("./productMl.model");
-const { ProductWeb, ProductWebSchema } = require("./productWeb.model");
-const { UserMl, UserMlSchema } = require("./userMl.model");
-const { Setting, SettingSchema } = require("./setting.model");
+const { User, UserSchema } = require('./user.model');
+const { Customer, CustomerSchema } = require('./customer.model');
+const { Category, CategorySchema } = require('./category.model');
+const { Product, ProductSchema } = require('./product.model');
+const { ProductMl, ProductMlSchema } = require('./productMl.model');
+const { ProductWeb, ProductWebSchema } = require('./productWeb.model');
+const { UserMl, UserMlSchema } = require('./userMl.model');
+const { Setting, SettingSchema } = require('./setting.model');
 // const { Order, OrderSchema } = require('./order.model');
 // const { OrderProduct, OrderProductSchema } = require('./order-product.model');
 
@@ -28,7 +28,7 @@ function setupModels(sequelize) {
   ProductMl.associate(sequelize.models);
   ProductWeb.associate(sequelize.models);
   UserMl.associate(sequelize.models);
-  Setting.associate(sequelize.models);
+  // Setting.associate(sequelize.models);
   // Order.associate(sequelize.models);
 }
 

@@ -1,5 +1,4 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { USER_TABLE } = require('./user.model');
 
 const SETTING_TABLE = 'settings';
 
@@ -9,17 +8,6 @@ const SettingSchema = {
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
-  },
-  user_id: {
-    allowNull: true,
-    type: DataTypes.INTEGER,
-    unique: true,
-    references: {
-      model: USER_TABLE,
-      key: 'id',
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
   },
   setting: {
     allowNull: false,
@@ -38,12 +26,12 @@ const SettingSchema = {
 };
 
 class Setting extends Model {
-  static associate(models) {
-    // this.belongsTo(models.User, { as: 'user' });
-    this.belongsTo(models.User, {
-      foreignKey: 'user_id',
-    });
-  }
+  // static associate(models) {
+  //   // this.belongsTo(models.User, { as: 'user' });
+  //   this.belongsTo(models.User, {
+  //     foreignKey: 'user_id',
+  //   });
+  // }
 
   static config(sequelize) {
     return {

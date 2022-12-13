@@ -1,20 +1,11 @@
-const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class SettingService {
   constructor() {}
 
-  async findByUserId(user_id) {
-    const setting = await models.Setting.findOne({
-      where: {
-        user_id: user_id,
-      },
-    });
-
-    if (!setting) {
-      throw boom.notFound('user not found');
-    }
-    return setting;
+  async find() {
+    const rta = await models.Setting.findOne();
+    return rta;
   }
 
   async createSettings(data) {
@@ -22,12 +13,9 @@ class SettingService {
     return rta;
   }
 
-  async updateSettings(id, data) {
-    const userSetting = await this.findByUserId(id);
-    // const newSettings = userSetting.setting = data
-    let setting = data;
+  async updateSettings(setting) {
+    const userSetting = await models.Setting.findOne();
     const newSettings = { ...userSetting, ...setting };
-    // userSetting.setting = data
     const rta = await userSetting.update(newSettings);
     return rta;
   }
