@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const user_id = Joi.number().integer();
+// const user_id = Joi.number().integer();
 const nickname = Joi.string();
 const access_token = Joi.string();
 const token_type = Joi.string();
@@ -13,7 +13,7 @@ const site_id = Joi.string();
 
 const createUserMlSchema = Joi.object({
   id: id.required(),
-  user_id: user_id,
+  // user_id: user_id,
   nickname: nickname.required(),
   access_token: access_token.required(),
   token_type: token_type.required(),
@@ -25,7 +25,7 @@ const createUserMlSchema = Joi.object({
 });
 
 const updateUserMlSchema = Joi.object({
-  user_id: user_id,
+  // user_id: user_id,
   access_token: access_token.required(),
   token_type: token_type.required(),
   scope: scope.required(),
@@ -33,12 +33,12 @@ const updateUserMlSchema = Joi.object({
   refresh_token: refresh_token.required(),
 });
 
-const getUserMlSchema = Joi.object({
-  id: id.required(),
-});
+// const getUserMlSchema = Joi.object({
+//   id: id.required(),
+// });
 
 module.exports = {
   createUserMlSchema,
-  getUserMlSchema,
+  // getUserMlSchema,
   updateUserMlSchema,
 };

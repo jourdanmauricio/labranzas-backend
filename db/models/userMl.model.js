@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { USER_TABLE } = require('./user.model');
+// const { USER_TABLE } = require('./user.model');
 const USER_ML_TABLE = 'users_ml';
 
 const UserMlSchema = {
@@ -9,17 +9,17 @@ const UserMlSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  user_id: {
-    allowNull: true,
-    type: DataTypes.INTEGER,
-    unique: true,
-    references: {
-      model: USER_TABLE,
-      key: 'id',
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  },
+  // user_id: {
+  //   allowNull: true,
+  //   type: DataTypes.INTEGER,
+  //   unique: true,
+  //   references: {
+  //     model: USER_TABLE,
+  //     key: 'id',
+  //   },
+  //   onUpdate: 'CASCADE',
+  //   onDelete: 'SET NULL',
+  // },
   nickname: {
     allowNull: true,
     type: DataTypes.STRING(),
@@ -65,13 +65,13 @@ const UserMlSchema = {
 };
 
 class UserMl extends Model {
-  static associate(models) {
-    // this.belongsTo(models.User, { as: 'user' });
-    this.belongsTo(models.User, { as: 'user', foreignKey: 'id' });
-    // this.belongsTo(models.User, {
-    //   foreignKey: 'user_id',
-    // });
-  }
+  // static associate(models) {
+  // this.belongsTo(models.User, { as: 'user' });
+  // this.belongsTo(models.User, { as: 'user', foreignKey: 'id' });
+  // this.belongsTo(models.User, {
+  //   foreignKey: 'user_id',
+  // });
+  // }
 
   static config(sequelize) {
     return {

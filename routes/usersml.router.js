@@ -11,6 +11,7 @@ const {
   createUserMlSchema,
   updateUserMlSchema,
 } = require('./../schemas/userMl.schema');
+const { checkRoles } = require('../middlewares/auth.handler');
 
 // const jwt = require('jsonwebtoken');
 
@@ -35,12 +36,13 @@ router.get(
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
+  checkRoles('superadmin'),
   validatorHandler(createUserMlSchema, 'body'),
   async (req, res, next) => {
     try {
-      const user = req.user;
+      // const user = req.user;
       const mlUser = req.body;
-      mlUser.user_id = user.sub;
+      // mlUser.user_id = user.sub;
       const rta = await service.create(mlUser);
       res.status(201).json(rta);
     } catch (error) {

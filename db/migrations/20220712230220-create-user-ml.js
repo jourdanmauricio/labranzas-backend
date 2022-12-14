@@ -2,7 +2,7 @@
 
 const { DataTypes, Sequelize } = require('sequelize');
 const { USER_ML_TABLE } = require('./../models/userMl.model');
-const { USER_TABLE } = require('./../models/user.model');
+// const { USER_TABLE } = require('./../models/user.model');
 
 module.exports = {
   async up(queryInterface) {
@@ -13,17 +13,17 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      user_id: {
-        allowNull: true,
-        type: DataTypes.INTEGER,
-        unique: false,
-        references: {
-          model: USER_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
+      // user_id: {
+      //   allowNull: true,
+      //   type: DataTypes.INTEGER,
+      //   unique: false,
+      //   references: {
+      //     model: USER_TABLE,
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'CASCADE',
+      // },
       nickname: {
         allowNull: true,
         type: DataTypes.STRING(),
