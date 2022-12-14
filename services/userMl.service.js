@@ -27,10 +27,18 @@ class UserMlService {
     return userMl;
   }
 
-  async findOne(id) {
-    const userMl = await models.UserMl.findByPk(id);
+  // async findOne(id) {
+  //   const userMl = await models.UserMl.findByPk(id);
+  //   if (!userMl) {
+  //     throw boom.notFound('user not found');
+  //   }
+  //   return userMl;
+  // }
+
+  async findOne() {
+    const userMl = await models.UserMl.findOne();
     if (!userMl) {
-      throw boom.notFound('user not found');
+      throw boom.notFound('Ususario de Mercado Libre no configurado!');
     }
     return userMl;
   }

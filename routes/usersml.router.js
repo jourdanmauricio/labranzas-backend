@@ -21,11 +21,12 @@ router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   // validatorHandler(getUserMlSchema, 'params'),
+  checkRoles('superadmin'),
   async (req, res, next) => {
     try {
       // const { id } = req.params;
-      const user = req.user;
-      const userMl = await service.findByUserId(user.sub);
+      // const user = req.user;
+      const userMl = await service.findOne();
       res.json(userMl);
     } catch (error) {
       next(error);

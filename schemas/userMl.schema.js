@@ -33,12 +33,12 @@ const updateUserMlSchema = Joi.object({
   refresh_token: refresh_token.required(),
 });
 
-// const getUserMlSchema = Joi.object({
-//   id: id.required(),
-// });
+const getUserMlSchema = Joi.object({
+  id: id.required(),
+});
 
 module.exports = {
   createUserMlSchema,
-  // getUserMlSchema,
+  getUserMlSchema,
   updateUserMlSchema,
 };
