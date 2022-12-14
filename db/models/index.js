@@ -27,7 +27,7 @@ function setupModels(sequelize) {
   Product.associate(sequelize.models);
   // ProductMl.associate(sequelize.models);
   ProductWeb.associate(sequelize.models);
-  UserMl.associate(sequelize.models);
+  // UserMl.associate(sequelize.models);
   // Setting.associate(sequelize.models);
   // Order.associate(sequelize.models);
 }
