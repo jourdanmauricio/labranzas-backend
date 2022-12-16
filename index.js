@@ -1,6 +1,8 @@
 const express = require('express');
 const routerApi = require('./routes');
 const cors = require('cors');
+const scheduled = require('./schedule/refreshToken');
+
 const app = express();
 
 app.use(express.json());
@@ -41,6 +43,8 @@ app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
+
+scheduled.initScheduledJobs();
 
 app.listen(port, () => {
   console.log(`Listen at port ${port}...`);

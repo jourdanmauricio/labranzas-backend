@@ -12,10 +12,17 @@ const config = {
   dbPassword: process.env.DB_PASSWORD,
   dbConnectString: process.env.DB_CONNECT,
   dbEngine: process.env.DB_ENGINE,
-
   // dbUrl: process.env.DATABASE_URL,
   // apiKey: process.env.API_KEY,
+
+  /////////
+  // JWT //
+  /////////
   jwtSecret: process.env.JWT_SECRET,
+
+  ///////////
+  // USERS //
+  ///////////
 
   adminEmail: process.env.ADMIN_EMAIL,
   adminPass: process.env.ADMIN_PASS,
@@ -26,9 +33,18 @@ const config = {
 
   domain: process.env.DOMAIN,
 
+  ////////////
+  // MAILER //
+  ////////////
   mailerEmail: process.env.MAILER_EMAIL,
   mailerPassword: process.env.MAILER_PASSWORD,
   // emailTo: process.env.EMAIL_TO,
+  ////////
+  // ML //
+  ////////
+  mlApi: process.env.ML_API,
+  mlAppId: process.env.ML_APP_ID,
+  mlSecret: process.env.ML_SECRET,
 };
 
 module.exports = { config };
