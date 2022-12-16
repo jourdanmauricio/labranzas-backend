@@ -13,9 +13,11 @@ class SettingService {
     return rta;
   }
 
-  async updateSettings(setting) {
+  async updateSettings(settings) {
     const userSetting = await models.Setting.findOne();
-    const newSettings = { ...userSetting, ...setting };
+    const newSettings = {
+      setting: { ...userSetting.setting, ...settings.setting },
+    };
     const rta = await userSetting.update(newSettings);
     return rta;
   }

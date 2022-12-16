@@ -18,7 +18,7 @@ router.get(
   async (req, res, next) => {
     try {
       const settings = await service.find();
-      res.json(settings.setting);
+      res.json(settings);
     } catch (error) {
       next(error);
     }
@@ -50,7 +50,7 @@ router.put(
     try {
       const setting = req.body;
       const settingUser = await service.updateSettings(setting);
-      res.status(200).json(settingUser.setting);
+      res.status(200).json(settingUser);
     } catch (error) {
       next(error);
     }
