@@ -20,7 +20,17 @@ class Main {
 exports.initScheduledJobs = () => {
   const scheduledJobFunction = CronJob.schedule('*/30 */5 * * *', async () => {
     // */30 */5 * * *  //Cada 5 hs 30 min. https://crontab.guru/#*/30_*/5_*_*_*
-    console.log('Refresh Token');
+    const dt = new Date();
+    const padL = (nr, len = 2, chr = `0`) => `${nr}`.padStart(len, chr);
+
+    const time = `${padL(dt.getMonth() + 1)}/${padL(
+      dt.getDate()
+    )}/${dt.getFullYear()} ${padL(dt.getHours())}:${padL(
+      dt.getMinutes()
+    )}:${padL(dt.getSeconds())}`;
+
+    console.log('Refresh Token', time);
+
     // Add your custom logic here
     Main.postRefreshToken();
   });
