@@ -5,6 +5,7 @@ const prod_id = Joi.number().integer();
 const seller_custom_field = Joi.string();
 const price = Joi.number().min(10);
 const available_quantity = Joi.number().integer();
+const sold_quantity = Joi.number().integer();
 const status = Joi.string();
 const permalink = Joi.string();
 const start_time = Joi.date();
@@ -16,6 +17,7 @@ const createProductMlSchema = Joi.object({
   seller_custom_field: seller_custom_field.required(),
   price: price.required(),
   available_quantity: available_quantity.required(),
+  sold_quantity: sold_quantity.required(),
   status: status.required(),
   permalink: permalink.required(),
   start_time: start_time.required(),
@@ -28,6 +30,7 @@ const updateProductSchema = Joi.object({
   seller_custom_field,
   price,
   available_quantity,
+  sold_quantity,
   status,
   permalink,
   start_time,

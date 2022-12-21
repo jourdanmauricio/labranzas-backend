@@ -24,6 +24,7 @@ module.exports = {
       },
       price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
       available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+      sold_quantity: { type: DataTypes.INTEGER, allowNull: false },
       status: {
         type: DataTypes.ENUM(
           'pending',
@@ -57,8 +58,8 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable(PRODUCT_ML_TABLE);
-    await queryInterface.sequelize.query(
-      'DROP TYPE IF EXISTS enum_products_ml_status'
-    );
+    // await queryInterface.sequelize.query(
+    //   'DROP TYPE IF EXISTS enum_products_ml_status'
+    // );
   },
 };

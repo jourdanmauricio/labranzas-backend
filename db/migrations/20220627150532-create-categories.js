@@ -23,7 +23,8 @@ module.exports = {
       },
       path_from_root: {
         //        type: DataTypes.ARRAY(Sequelize.JSONB),
-        type: DataTypes.JSON,
+        // type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
         get() {
@@ -43,7 +44,8 @@ module.exports = {
       },
       attributes: {
         // type: DataTypes.ARRAY(Sequelize.JSONB),
-        type: DataTypes.JSON,
+        // type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
         get() {

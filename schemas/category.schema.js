@@ -7,7 +7,7 @@ const path_from_root = Joi.array();
 const picture = Joi.string().allow(null, '').uri();
 const settings = Joi.object();
 const attributes = Joi.array();
-// const attributes_oblg = Joi.object();
+const attributes_oblg = Joi.object();
 const description_web = Joi.string().allow(null, '');
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
@@ -21,7 +21,7 @@ const createCategorySchema = Joi.object({
   picture: picture,
   settings: settings,
   attributes: attributes,
-  // attributes_oblg: attributes_oblg,
+  attributes_oblg: attributes_oblg,
   description_web,
 });
 

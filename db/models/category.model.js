@@ -21,7 +21,8 @@ const CategorySchema = {
   },
   path_from_root: {
     // type: DataTypes.ARRAY(Sequelize.JSONB),
-    type: DataTypes.JSON,
+    // type: DataTypes.JSON,
+    type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
     get() {
@@ -41,8 +42,9 @@ const CategorySchema = {
   },
   attributes: {
     // type: DataTypes.ARRAY(Sequelize.JSONB),
+    // type: DataTypes.JSON,
+    type: DataTypes.TEXT,
     allowNull: true,
-    type: DataTypes.JSON,
     defaultValue: '[]',
     get() {
       return JSON.parse(this.getDataValue('attributes'));

@@ -34,7 +34,7 @@ const createProductSchema = Joi.object({
   listing_type_id: listing_type_id.required(),
   condition: condition.required(),
   available_quantity: available_quantity.required(),
-  sold_quantity: sold_quantity.required(),
+  sold_quantity: sold_quantity,
   category_id: category_id.required(),
   variations: variations.required(),
   sale_terms: sale_terms.required(),

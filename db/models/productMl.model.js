@@ -18,6 +18,7 @@ const ProductMlSchema = {
   },
   price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
   available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+  sold_quantity: { type: DataTypes.INTEGER, allowNull: false },
   status: {
     type: DataTypes.ENUM(
       'pending',
