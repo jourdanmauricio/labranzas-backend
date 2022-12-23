@@ -54,7 +54,9 @@ class CategoryService {
   }
 
   async findAllCat() {
-    const categories = await models.Category.findAll();
+    const categories = await models.Category.findAll({
+      attributes: ['id', 'name', 'full_name', 'description_web'],
+    });
     return categories;
   }
 

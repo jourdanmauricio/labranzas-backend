@@ -6,8 +6,9 @@ const validatorHandler = require('./../middlewares/validator.handler');
 const { checkRoles } = require('./../middlewares/auth.handler'); // checkAdminRole,
 
 const {
-  createCategorySchema,
   getCategorySchema,
+  createCategorySchema,
+  updateCategorySchema,
   queryUserSchema,
 } = require('./../schemas/category.schema');
 
@@ -70,8 +71,9 @@ router.post(
 router.put(
   '/:id',
   validatorHandler(getCategorySchema, 'params'),
-  validatorHandler(createCategorySchema, 'body'),
+  validatorHandler(updateCategorySchema, 'body'),
   passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'superadmin'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

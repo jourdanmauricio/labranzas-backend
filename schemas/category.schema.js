@@ -13,6 +13,10 @@ const limit = Joi.number().integer();
 const offset = Joi.number().integer();
 const q = Joi.string();
 
+const getCategorySchema = Joi.object({
+  id: id.required(),
+});
+
 const createCategorySchema = Joi.object({
   id: id.required(),
   name: name.required(),
@@ -25,8 +29,8 @@ const createCategorySchema = Joi.object({
   description_web,
 });
 
-const getCategorySchema = Joi.object({
-  id: id.required(),
+const updateCategorySchema = Joi.object({
+  description_web,
 });
 
 const queryUserSchema = Joi.object({
@@ -36,7 +40,8 @@ const queryUserSchema = Joi.object({
 });
 
 module.exports = {
-  createCategorySchema,
   getCategorySchema,
+  createCategorySchema,
+  updateCategorySchema,
   queryUserSchema,
 };
