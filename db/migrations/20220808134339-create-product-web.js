@@ -13,7 +13,7 @@ module.exports = {
         type: DataTypes.INTEGER,
       },
       prod_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.NUMBER(10),
         references: { model: PRODUCT_TABLE, key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -22,8 +22,9 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-      available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+      price: { type: DataTypes.DOUBLE, allowNull: false },
+      available_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
+      sold_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
       status: {
         type: DataTypes.ENUM(
           'pending',
@@ -35,13 +36,24 @@ module.exports = {
         ),
         allowNull: false,
       },
+      listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
       permalink: { allowNull: true, type: DataTypes.STRING },
       start_time: {
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW,
       },
-      variations: { type: DataTypes.JSON, allowNull: true },
+      variations: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        defaultValue: '[]',
+        get() {
+          return JSON.parse(this.getDataValue('variations'));
+        },
+        set(value) {
+          this.setDataValue('variations', JSON.stringify(value));
+        },
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

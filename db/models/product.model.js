@@ -9,7 +9,6 @@ const ProductSchema = {
     type: DataTypes.INTEGER,
   },
   attributes: {
-    //type: DataTypes.JSON, allowNull: true
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -22,11 +21,10 @@ const ProductSchema = {
   },
   title: { type: DataTypes.STRING, allowNull: false },
   seller_custom_field: { type: DataTypes.STRING, allowNull: false },
-  price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-  // price: { type: DataTypes.INTEGER, allowNull: false },
-  available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+  price: { type: DataTypes.DOUBLE, allowNull: false },
+  available_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
   sold_quantity: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER(6),
     allowNull: false,
     defaultValue: 0,
   },
@@ -43,7 +41,6 @@ const ProductSchema = {
   },
   description: { type: DataTypes.STRING, allowNull: true },
   pictures: {
-    // type: DataTypes.JSON, allowNull: false
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -70,7 +67,6 @@ const ProductSchema = {
     },
   },
   variations: {
-    // type: DataTypes.JSON, allowNull: true
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',

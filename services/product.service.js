@@ -13,6 +13,7 @@ class ProductsService {
     const product = await models.Product.findByPk(id, {
       include: ['prodMl', 'prodWeb', 'category'],
     });
+
     if (!product) {
       throw boom.notFound('product not found');
     }

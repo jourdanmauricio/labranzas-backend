@@ -28,6 +28,20 @@ router.get(
   }
 );
 
+router.get(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  // validatorHandler(queryProductMlSchema, 'query'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const users = await service.findOne(id);
+      res.json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),

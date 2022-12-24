@@ -45,7 +45,7 @@ const createProductSchema = Joi.object({
 });
 
 const updateProductSchema = Joi.object({
-  id: id,
+  // id: id,
   attributes,
   title,
   seller_custom_field,

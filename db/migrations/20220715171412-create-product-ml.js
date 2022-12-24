@@ -22,9 +22,10 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-      available_quantity: { type: DataTypes.INTEGER, allowNull: false },
-      sold_quantity: { type: DataTypes.INTEGER, allowNull: false },
+      // price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+      price: { type: DataTypes.DOUBLE, allowNull: false },
+      available_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
+      sold_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
       status: {
         type: DataTypes.ENUM(
           'pending',
@@ -36,6 +37,7 @@ module.exports = {
         ),
         allowNull: false,
       },
+      listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
       permalink: { allowNull: false, type: DataTypes.STRING },
       start_time: {
         allowNull: false,

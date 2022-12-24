@@ -1,22 +1,22 @@
-const express = require("express");
-const passport = require("passport");
+const express = require('express');
+const passport = require('passport');
 
-const ProductService = require("./../services/product.service");
-const validatorHandler = require("./../middlewares/validator.handler");
+const ProductService = require('./../services/product.service');
+const validatorHandler = require('./../middlewares/validator.handler');
 const {
   updateProductSchema,
   createProductSchema,
   getProductSchema,
   queryProductSchema,
-} = require("./../schemas/product.schema");
-const { checkRoles } = require("../middlewares/auth.handler");
+} = require('./../schemas/product.schema');
+const { checkRoles } = require('../middlewares/auth.handler');
 
 const router = express.Router();
 const service = new ProductService();
 
 router.get(
-  "/",
-  validatorHandler(queryProductSchema, "query"),
+  '/',
+  validatorHandler(queryProductSchema, 'query'),
   async (req, res, next) => {
     try {
       const products = await service.find(req.query);
@@ -28,9 +28,9 @@ router.get(
 );
 
 router.get(
-  "/getSkus",
-  passport.authenticate("jwt", { session: false }),
-  checkRoles("admin", "superadmin"),
+  '/getSkus',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'superadmin'),
   async (req, res, next) => {
     try {
       const skus = await service.findSkus();
@@ -42,13 +42,13 @@ router.get(
 );
 
 router.get(
-  "/:id",
-  validatorHandler(getProductSchema, "params"),
+  '/:id',
+  validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const category = await service.findOne(id);
-      res.json(category);
+      const product = await service.findOne(id);
+      res.json(product);
     } catch (error) {
       next(error);
     }
@@ -56,9 +56,9 @@ router.get(
 );
 
 router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  validatorHandler(createProductSchema, "body"),
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -71,9 +71,9 @@ router.post(
 );
 
 router.put(
-  "/:id",
-  validatorHandler(getProductSchema, "params"),
-  validatorHandler(updateProductSchema, "body"),
+  '/:id',
+  validatorHandler(getProductSchema, 'params'),
+  validatorHandler(updateProductSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -87,9 +87,9 @@ router.put(
 );
 
 router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  validatorHandler(getProductSchema, "params"),
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

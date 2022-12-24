@@ -11,7 +11,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.NUMBER(10),
       },
       attributes: {
         // type: DataTypes.JSON,
@@ -26,12 +26,12 @@ module.exports = {
         },
       },
       title: { type: DataTypes.STRING, allowNull: false },
-      seller_custom_field: { type: DataTypes.STRING, allowNull: false },
-      price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+      seller_custom_field: { type: DataTypes.STRING(30), allowNull: false },
+      price: { type: DataTypes.DOUBLE, allowNull: false },
       // price: { type: DataTypes.INTEGER, allowNull: false },
-      available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+      available_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
       sold_quantity: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.NUMBER(6),
         allowNull: true,
         defaultValue: 0,
       },
@@ -60,8 +60,8 @@ module.exports = {
         },
       },
       thumbnail: { type: DataTypes.STRING, allowNull: false },
-      condition: { type: DataTypes.STRING, allowNull: false },
-      listing_type_id: { type: DataTypes.STRING, allowNull: false },
+      condition: { type: DataTypes.STRING(10), allowNull: false },
+      listing_type_id: { type: DataTypes.STRING(20), allowNull: false },
       sale_terms: {
         // type: DataTypes.JSON, allowNull: true
         type: DataTypes.TEXT,

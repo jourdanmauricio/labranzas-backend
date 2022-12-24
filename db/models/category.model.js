@@ -20,8 +20,6 @@ const CategorySchema = {
     allowNull: true,
   },
   path_from_root: {
-    // type: DataTypes.ARRAY(Sequelize.JSONB),
-    // type: DataTypes.JSON,
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -37,12 +35,18 @@ const CategorySchema = {
     allowNull: true,
   },
   settings: {
+    // type: DataTypes.TEXT,
     type: DataTypes.JSON,
     allowNull: true,
+    // defaultValue: '[]',
+    // get() {
+    //   return JSON.parse(this.getDataValue('settings'));
+    // },
+    // set(value) {
+    //   this.setDataValue('settings', JSON.stringify(value));
+    // },
   },
   attributes: {
-    // type: DataTypes.ARRAY(Sequelize.JSONB),
-    // type: DataTypes.JSON,
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -56,6 +60,14 @@ const CategorySchema = {
   attributes_oblg: {
     type: DataTypes.JSON,
     allowNull: true,
+    // type: DataTypes.TEXT,
+    // defaultValue: '[]',
+    // get() {
+    //   return JSON.parse(this.getDataValue('attributes_oblg'));
+    // },
+    // set(value) {
+    //   this.setDataValue('attributes_oblg', JSON.stringify(value));
+    // },
   },
   description_web: {
     type: DataTypes.STRING,

@@ -16,9 +16,10 @@ const ProductMlSchema = {
     allowNull: true,
     type: DataTypes.STRING,
   },
-  price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-  available_quantity: { type: DataTypes.INTEGER, allowNull: false },
-  sold_quantity: { type: DataTypes.INTEGER, allowNull: false },
+  // price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+  price: { type: DataTypes.DOUBLE, allowNull: false },
+  available_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
+  sold_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
   status: {
     type: DataTypes.ENUM(
       'pending',
@@ -30,23 +31,26 @@ const ProductMlSchema = {
     ),
     allowNull: false,
   },
+  listing_type_id: { allowNull: false, type: DataTypes.STRING },
   permalink: { allowNull: false, type: DataTypes.STRING },
   start_time: {
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
   },
-  variations: { type: DataTypes.JSON, allowNull: true },
-  // created_at: {
-  //   allowNull: false,
-  //   type: DataTypes.DATE,
-  //   defaultValue: Sequelize.NOW,
-  // },
-  // updated_at: {
-  //   allowNull: false,
-  //   type: DataTypes.DATE,
-  //   defaultValue: Sequelize.NOW,
-  // },
+  variations: {
+    type: DataTypes.JSON,
+    allowNull: true,
+    // type: DataTypes.TEXT,
+    // allowNull: true,
+    // defaultValue: '[]',
+    // get() {
+    //   return JSON.parse(this.getDataValue('variations'));
+    // },
+    // set(value) {
+    //   this.setDataValue('variations', JSON.stringify(value));
+    // },
+  },
 };
 class ProductMl extends Model {
   static associate(models) {
@@ -63,9 +67,9 @@ class ProductMl extends Model {
       modelName: 'ProductMl',
       timestamps: true,
       underscored: true,
-      // defaultScope: {
-      //   attributes: { exclude: ['created_at', 'updated_at'] },
-      // },
+      defaultScope: {
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      },
     };
   }
 }
