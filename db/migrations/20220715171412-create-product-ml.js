@@ -1,8 +1,8 @@
 'use strict';
 
 const { DataTypes, Sequelize } = require('sequelize');
-const { PRODUCT_ML_TABLE } = require('./../models/productMl.model');
-const { PRODUCT_TABLE } = require('./../models/product.model');
+const { PRODUCT_ML_TABLE } = require('../models/productMl.model');
+const { PRODUCT_TABLE } = require('../models/product.model');
 module.exports = {
   async up(queryInterface) {
     await queryInterface.createTable(PRODUCT_ML_TABLE, {
@@ -14,6 +14,7 @@ module.exports = {
       },
       prod_id: {
         type: DataTypes.INTEGER,
+        unique: true,
         references: { model: PRODUCT_TABLE, key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -44,7 +45,17 @@ module.exports = {
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW,
       },
-      variations: { type: DataTypes.JSON, allowNull: true },
+      variations: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        defaultValue: '[]',
+        get() {
+          return JSON.parse(this.getDataValue('variations'));
+        },
+        set(value) {
+          this.setDataValue('variations', JSON.stringify(value));
+        },
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

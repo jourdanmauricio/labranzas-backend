@@ -35,16 +35,15 @@ const CategorySchema = {
     allowNull: true,
   },
   settings: {
-    // type: DataTypes.TEXT,
-    type: DataTypes.JSON,
+    type: DataTypes.TEXT,
     allowNull: true,
-    // defaultValue: '[]',
-    // get() {
-    //   return JSON.parse(this.getDataValue('settings'));
-    // },
-    // set(value) {
-    //   this.setDataValue('settings', JSON.stringify(value));
-    // },
+    defaultValue: '[]',
+    get() {
+      return JSON.parse(this.getDataValue('settings'));
+    },
+    set(value) {
+      this.setDataValue('settings', JSON.stringify(value));
+    },
   },
   attributes: {
     type: DataTypes.TEXT,
@@ -57,17 +56,15 @@ const CategorySchema = {
       this.setDataValue('attributes', JSON.stringify(value));
     },
   },
-  attributes_oblg: {
-    type: DataTypes.JSON,
-    allowNull: true,
-    // type: DataTypes.TEXT,
-    // defaultValue: '[]',
-    // get() {
-    //   return JSON.parse(this.getDataValue('attributes_oblg'));
-    // },
-    // set(value) {
-    //   this.setDataValue('attributes_oblg', JSON.stringify(value));
-    // },
+  attributes_details: {
+    type: DataTypes.TEXT,
+    defaultValue: '[]',
+    get() {
+      return JSON.parse(this.getDataValue('attributes_details'));
+    },
+    set(value) {
+      this.setDataValue('attributes_details', JSON.stringify(value));
+    },
   },
   description_web: {
     type: DataTypes.STRING,

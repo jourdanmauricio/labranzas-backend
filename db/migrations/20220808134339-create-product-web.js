@@ -14,12 +14,13 @@ module.exports = {
       },
       prod_id: {
         type: DataTypes.NUMBER(10),
+        unique: true,
         references: { model: PRODUCT_TABLE, key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       seller_custom_field: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(30),
         allowNull: false,
       },
       price: { type: DataTypes.DOUBLE, allowNull: false },
@@ -69,8 +70,8 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable(PRODUCT_WEB_TABLE);
-    await queryInterface.sequelize.query(
-      'DROP TYPE IF EXISTS enum_products_web_status'
-    );
+    // await queryInterface.sequelize.query(
+    //   'DROP TYPE IF EXISTS enum_products_web_status'
+    // );
   },
 };

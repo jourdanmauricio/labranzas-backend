@@ -39,8 +39,15 @@ module.exports = {
         allowNull: true,
       },
       settings: {
-        type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull: true,
+        defaultValue: '[]',
+        get() {
+          return JSON.parse(this.getDataValue('settings'));
+        },
+        set(value) {
+          this.setDataValue('settings', JSON.stringify(value));
+        },
       },
       attributes: {
         // type: DataTypes.JSON,
@@ -55,9 +62,15 @@ module.exports = {
           this.setDataValue('attributes', JSON.stringify(value));
         },
       },
-      attributes_oblg: {
-        type: DataTypes.JSON,
-        allowNull: true,
+      attributes_details: {
+        type: DataTypes.TEXT,
+        defaultValue: '[]',
+        get() {
+          return JSON.parse(this.getDataValue('attributes_details'));
+        },
+        set(value) {
+          this.setDataValue('attributes_details', JSON.stringify(value));
+        },
       },
       description_web: {
         type: DataTypes.STRING,

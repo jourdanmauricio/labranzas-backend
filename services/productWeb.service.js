@@ -14,6 +14,7 @@ class ProductsWebService {
   }
 
   async create(data) {
+    console.log('Service Create', data);
     const newProduct = await models.ProductWeb.create(data);
     return newProduct;
   }

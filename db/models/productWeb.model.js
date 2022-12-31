@@ -11,13 +11,15 @@ const ProductWebSchema = {
   prod_id: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    unique: true,
   },
   seller_custom_field: {
     allowNull: true,
     type: DataTypes.STRING,
   },
-  price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-  available_quantity: { type: DataTypes.INTEGER, allowNull: false },
+  price: { type: DataTypes.DOUBLE, allowNull: false },
+  available_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
+  sold_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
   status: {
     type: DataTypes.ENUM(
       'pending',
@@ -29,22 +31,25 @@ const ProductWebSchema = {
     ),
     allowNull: false,
   },
+  listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
   permalink: { allowNull: true, type: DataTypes.STRING },
   start_time: {
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
   },
-  variations: { type: DataTypes.JSON, allowNull: true },
-  created_at: {
-    allowNull: false,
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
-  },
-  updated_at: {
-    allowNull: false,
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
+  variations: {
+    // type: DataTypes.JSON,
+    // allowNull: true,
+    type: DataTypes.TEXT,
+    allowNull: true,
+    defaultValue: '[]',
+    get() {
+      return JSON.parse(this.getDataValue('variations'));
+    },
+    set(value) {
+      this.setDataValue('variations', JSON.stringify(value));
+    },
   },
 };
 class ProductWeb extends Model {
@@ -62,6 +67,9 @@ class ProductWeb extends Model {
       modelName: 'ProductWeb',
       timestamps: true,
       underscored: true,
+      defaultScope: {
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      },
     };
   }
 }

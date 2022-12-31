@@ -11,6 +11,7 @@ const ProductMlSchema = {
   prod_id: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    unique: true,
   },
   seller_custom_field: {
     allowNull: true,
@@ -31,7 +32,7 @@ const ProductMlSchema = {
     ),
     allowNull: false,
   },
-  listing_type_id: { allowNull: false, type: DataTypes.STRING },
+  listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
   permalink: { allowNull: false, type: DataTypes.STRING },
   start_time: {
     allowNull: false,
@@ -39,17 +40,17 @@ const ProductMlSchema = {
     defaultValue: Sequelize.NOW,
   },
   variations: {
-    type: DataTypes.JSON,
-    allowNull: true,
-    // type: DataTypes.TEXT,
+    // type: DataTypes.JSON,
     // allowNull: true,
-    // defaultValue: '[]',
-    // get() {
-    //   return JSON.parse(this.getDataValue('variations'));
-    // },
-    // set(value) {
-    //   this.setDataValue('variations', JSON.stringify(value));
-    // },
+    type: DataTypes.TEXT,
+    allowNull: true,
+    defaultValue: '[]',
+    get() {
+      return JSON.parse(this.getDataValue('variations'));
+    },
+    set(value) {
+      this.setDataValue('variations', JSON.stringify(value));
+    },
   },
 };
 class ProductMl extends Model {
