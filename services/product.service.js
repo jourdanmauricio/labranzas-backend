@@ -173,7 +173,7 @@ class ProductsService {
   }
 
   async update(id, changes) {
-    const product = await this.findOne(id);
+    const product = await models.Product.findByPk(id);
     const rta = await product.update(changes);
     return rta;
   }

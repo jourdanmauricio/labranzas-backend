@@ -5,7 +5,7 @@ const scheduled = require('./schedule/refreshToken');
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 const port = process.env.PORT || 3000;
 
 const {

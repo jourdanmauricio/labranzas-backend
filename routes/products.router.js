@@ -70,6 +70,52 @@ router.post(
   }
 );
 
+router.post(
+  '/massive',
+  passport.authenticate('jwt', { session: false }),
+  // validatorHandler(createProductSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const results = await Promise.all(
+        body.map(async (item) => {
+          const ml_id = item.ml_id;
+          let newProduc = await service.create(item);
+          newProduc.dataValues.ml_id = ml_id;
+          return newProduc;
+        })
+      );
+
+      res.status(201).json(results);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.put(
+  '/massive',
+  // validatorHandler(updateProductSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+
+      let Promises = [];
+      for (let i = 0; i < body.length; i++) {
+        let newPromise = await service.update(body[i].prod_id, {
+          description: body[i].description,
+        });
+        Promises.push(newPromise);
+      }
+      return Promise.all(Promises).then(function () {
+        res.sendStatus(200);
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.put(
   '/:id',
   validatorHandler(getProductSchema, 'params'),
