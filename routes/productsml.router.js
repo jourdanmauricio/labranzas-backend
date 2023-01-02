@@ -98,20 +98,6 @@ router.put(
     } catch (error) {
       next(error);
     }
-
-    // try {
-    //   const body = req.body;
-    //   const results = await Promise.all(
-    //     body.map(async (item) => {
-    //       let newProduc = await service.update(item);
-    //       return newProduc;
-    //     })
-    //   );
-
-    //   res.status(201).json(results);
-    // } catch (error) {
-    //   next(error);
-    // }
   }
 );
 
