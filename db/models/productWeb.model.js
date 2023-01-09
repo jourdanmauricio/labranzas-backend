@@ -33,6 +33,37 @@ const ProductWebSchema = {
   },
   listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
   permalink: { allowNull: true, type: DataTypes.STRING },
+  new_product: {
+    allowNull: false,
+    defaultValue: false,
+    type: DataTypes.BOOLEAN,
+  },
+  featured: {
+    allowNull: false,
+    defaultValue: false,
+    type: DataTypes.BOOLEAN,
+  },
+  best_sellers: {
+    allowNull: false,
+    defaultValue: false,
+    type: DataTypes.BOOLEAN,
+  },
+  trend: {
+    allowNull: false,
+    defaultValue: false,
+    type: DataTypes.BOOLEAN,
+  },
+  related_products: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    defaultValue: '[]',
+    get() {
+      return JSON.parse(this.getDataValue('related_products'));
+    },
+    set(value) {
+      this.setDataValue('related_products', JSON.stringify(value));
+    },
+  },
   start_time: {
     allowNull: false,
     type: DataTypes.DATE,

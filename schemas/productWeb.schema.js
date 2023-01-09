@@ -9,6 +9,11 @@ const sold_quantity = Joi.number().integer();
 const status = Joi.string();
 const listing_type_id = Joi.string();
 const permalink = Joi.string().allow(null, '');
+const new_product = Joi.boolean().allow(null, '');
+const featured = Joi.boolean().allow(null, '');
+const best_sellers = Joi.boolean().allow(null, '');
+const trend = Joi.boolean().allow(null, '');
+const related_products = Joi.array();
 const start_time = Joi.date();
 const variations = Joi.array();
 
@@ -22,6 +27,11 @@ const createProductWebSchema = Joi.object({
   status: status.required(),
   listing_type_id: listing_type_id.required(),
   permalink: permalink,
+  new_product: new_product.required(),
+  featured: featured.required(),
+  best_sellers: best_sellers.required(),
+  trend: trend.required(),
+  related_products,
   start_time: start_time,
   variations,
 });
@@ -36,6 +46,11 @@ const updateProductWebSchema = Joi.object({
   status,
   listing_type_id,
   permalink,
+  new_product,
+  featured,
+  best_sellers,
+  trend,
+  related_products,
   start_time,
   variations,
 });
