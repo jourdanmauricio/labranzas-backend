@@ -51,7 +51,16 @@ class ProductsWebService {
 
   async findFeatures() {
     const [results] = await sequelize.query(
-      'SELECT pweb.new_product, pweb.featured, pweb.best_sellers, pweb.trend, prod.title FROM PRODUCTS_WEB pweb JOIN PRODUCTS prod ON prod.id = pweb.prod_id WHERE pweb.new_product = 1 OR pweb.featured = 1 OR pweb.best_sellers = 1 OR pweb.trend = 1'
+      `SELECT pweb.id as id, pweb.prod_id as prod_id, pweb.new_product as new_product, pweb.featured as featured,
+      pweb.best_sellers as best_sellers, pweb.trend as trend, pweb.price as price, pweb.available_quantity as available_quantity, prod.title as title, prod.thumbnail as thumbnail, prod.seller_custom_field as seller_custom_field
+      FROM PRODUCTS_WEB pweb
+      JOIN PRODUCTS prod ON prod.id = pweb.prod_id
+      WHERE pweb.status       = 'active'
+      AND   (pweb.new_product = 1
+      OR    pweb.featured     = 1
+      OR    pweb.best_sellers = 1
+      OR    pweb.trend        = 1)
+      `
     );
 
     // const [results, metadata] = await sequelize.query(
