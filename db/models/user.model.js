@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
-const USER_TABLE = 'users';
+const USER_TABLE = 'USERS';
 
 const UserSchema = {
   id: {

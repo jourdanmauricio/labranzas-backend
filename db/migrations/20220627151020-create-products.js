@@ -8,13 +8,14 @@ module.exports = {
   async up(queryInterface) {
     await queryInterface.createTable(PRODUCT_TABLE, {
       id: {
+        field: 'ID',
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.NUMBER(10),
       },
       attributes: {
-        // type: DataTypes.JSON,
+        field: 'ATTRIBUTES',
         type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
@@ -25,17 +26,34 @@ module.exports = {
           this.setDataValue('attributes', JSON.stringify(value));
         },
       },
-      title: { type: DataTypes.STRING, allowNull: false },
-      seller_custom_field: { type: DataTypes.STRING(30), allowNull: false },
-      price: { type: DataTypes.DOUBLE, allowNull: false },
-      // price: { type: DataTypes.INTEGER, allowNull: false },
-      available_quantity: { type: DataTypes.NUMBER(6), allowNull: false },
+      title: {
+        field: 'TITLE',
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      seller_custom_field: {
+        field: 'SELLER_CUSTOM_FIELD',
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      price: {
+        field: 'PRICE',
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+      },
+      available_quantity: {
+        field: 'AVAILABLE_QUANTITY',
+        type: DataTypes.NUMBER(6),
+        allowNull: false,
+      },
       sold_quantity: {
+        field: 'SOLD_QUANTITY',
         type: DataTypes.NUMBER(6),
         allowNull: true,
         defaultValue: 0,
       },
       status: {
+        field: 'STATUS',
         type: DataTypes.ENUM([
           'pending',
           'under_review',
@@ -46,9 +64,13 @@ module.exports = {
         ]),
         allowNull: false,
       },
-      description: { type: DataTypes.STRING(5000), allowNull: true },
+      description: {
+        field: 'DESCRIPTION',
+        type: DataTypes.STRING(5000),
+        allowNull: true,
+      },
       pictures: {
-        // type: DataTypes.JSON, allowNull: false
+        field: 'PICTURES',
         type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
@@ -59,11 +81,23 @@ module.exports = {
           this.setDataValue('pictures', JSON.stringify(value));
         },
       },
-      thumbnail: { type: DataTypes.STRING, allowNull: false },
-      condition: { type: DataTypes.STRING(10), allowNull: false },
-      listing_type_id: { type: DataTypes.STRING(20), allowNull: false },
+      thumbnail: {
+        field: 'THUMBNAIL',
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      condition: {
+        field: 'CONDITION',
+        type: DataTypes.STRING(10),
+        allowNull: false,
+      },
+      listing_type_id: {
+        field: 'LISTING_TYPE_ID',
+        type: DataTypes.STRING(20),
+        allowNull: false,
+      },
       sale_terms: {
-        // type: DataTypes.JSON, allowNull: true
+        field: 'SALE_TERMS',
         type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
@@ -75,37 +109,44 @@ module.exports = {
         },
       },
       variations: {
-        // type: DataTypes.JSON, allowNull: true
+        field: 'VARIATIONS',
         type: DataTypes.TEXT,
         allowNull: true,
         defaultValue: '[]',
         get() {
-          return JSON.parse(this.getDataValue('variations'));
+          return JSON.parse(this.getDataValue('VARIATIONS'));
         },
         set(value) {
-          this.setDataValue('variations', JSON.stringify(value));
+          this.setDataValue('VARIATIONS', JSON.stringify(value));
         },
       },
       start_time: {
+        field: 'START_TIME',
         allowNull: false,
         type: DataTypes.DATE,
-        field: 'start_time',
         defaultValue: Sequelize.NOW,
       },
-      video_id: { type: DataTypes.STRING, allowNull: true },
+      video_id: {
+        field: 'VIDEO_ID',
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       category_id: {
+        field: 'CATEGORY_ID',
         allowNull: false,
         type: DataTypes.STRING,
-        references: { model: CATEGORY_TABLE, key: 'id' },
+        references: { model: CATEGORY_TABLE, key: 'ID' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       },
       created_at: {
+        field: 'CREATED_AT',
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW,
       },
       updated_at: {
+        field: 'UPDATED_AT',
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW,

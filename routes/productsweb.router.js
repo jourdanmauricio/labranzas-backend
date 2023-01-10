@@ -12,18 +12,14 @@ const {
 const router = express.Router();
 const service = new ProductWebService();
 
-// router.get(
-//   '/',
-//   passport.authenticate('jwt', { session: false }),
-//   async (req, res, next) => {
-//     try {
-//       const users = await service.find(req.query);
-//       res.json(users);
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await service.findFeatures();
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.put(
   '/:id',

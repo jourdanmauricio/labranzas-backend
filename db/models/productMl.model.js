@@ -1,27 +1,38 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const PRODUCT_ML_TABLE = 'products_ml';
+const PRODUCT_ML_TABLE = 'PRODUCTS_ML';
 
 const ProductMlSchema = {
   id: {
+    field: 'ID',
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
     type: DataTypes.STRING,
   },
   prod_id: {
+    field: 'PROD_ID',
     allowNull: true,
     type: DataTypes.INTEGER,
     unique: true,
   },
   seller_custom_field: {
+    field: 'SELLER_CUSTOM_FIELD',
     allowNull: true,
     type: DataTypes.STRING,
   },
-  // price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-  price: { type: DataTypes.DOUBLE, allowNull: false },
-  available_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
-  sold_quantity: { type: DataTypes.INTEGER(6), allowNull: false },
+  price: { field: 'PRICE', type: DataTypes.DOUBLE, allowNull: false },
+  available_quantity: {
+    field: 'AVAILABLE_QUANTITY',
+    type: DataTypes.INTEGER(6),
+    allowNull: false,
+  },
+  sold_quantity: {
+    field: 'SOLD_QUANTITY',
+    type: DataTypes.INTEGER(6),
+    allowNull: false,
+  },
   status: {
+    field: 'STATUS',
     type: DataTypes.ENUM(
       'pending',
       'under_review',
@@ -32,16 +43,20 @@ const ProductMlSchema = {
     ),
     allowNull: false,
   },
-  listing_type_id: { allowNull: false, type: DataTypes.STRING(50) },
-  permalink: { allowNull: false, type: DataTypes.STRING },
+  listing_type_id: {
+    field: 'LISTING_TYPE_ID',
+    allowNull: false,
+    type: DataTypes.STRING(50),
+  },
+  permalink: { field: 'PERMALINK', allowNull: false, type: DataTypes.STRING },
   start_time: {
+    field: 'START_TIME',
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
   },
   variations: {
-    // type: DataTypes.JSON,
-    // allowNull: true,
+    field: 'VARIATIONS',
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -51,6 +66,18 @@ const ProductMlSchema = {
     set(value) {
       this.setDataValue('variations', JSON.stringify(value));
     },
+  },
+  created_at: {
+    field: 'CREATED_AT',
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
+  },
+  updated_at: {
+    field: 'UPDATED_AT',
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
   },
 };
 class ProductMl extends Model {
@@ -66,10 +93,10 @@ class ProductMl extends Model {
       sequelize,
       tableName: PRODUCT_ML_TABLE,
       modelName: 'ProductMl',
-      timestamps: true,
+      timestamps: false,
       underscored: true,
       defaultScope: {
-        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        attributes: { exclude: ['created_at', 'updated_at'] },
       },
     };
   }

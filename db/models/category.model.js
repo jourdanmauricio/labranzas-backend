@@ -1,25 +1,29 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const CATEGORY_TABLE = 'categories';
+const CATEGORY_TABLE = 'CATEGORIES';
 
 const CategorySchema = {
   id: {
+    field: 'ID',
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
     type: DataTypes.STRING(20),
   },
   name: {
+    field: 'NAME',
     type: DataTypes.STRING(100),
     unique: true,
     allowNull: false,
   },
   full_name: {
+    field: 'FULL_NAME',
     type: DataTypes.STRING,
     unique: true,
     allowNull: true,
   },
   path_from_root: {
+    field: 'PATH_FROM_ROOT',
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -31,10 +35,12 @@ const CategorySchema = {
     },
   },
   picture: {
+    field: 'PICTURE',
     type: DataTypes.STRING,
     allowNull: true,
   },
   settings: {
+    field: 'SETTINGS',
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -46,6 +52,7 @@ const CategorySchema = {
     },
   },
   attributes: {
+    field: 'ATTRIBUTES',
     type: DataTypes.TEXT,
     allowNull: true,
     defaultValue: '[]',
@@ -57,6 +64,7 @@ const CategorySchema = {
     },
   },
   attributes_details: {
+    field: 'ATTRIBUTES_DETAILS',
     type: DataTypes.TEXT,
     defaultValue: '[]',
     get() {
@@ -67,15 +75,18 @@ const CategorySchema = {
     },
   },
   description_web: {
+    field: 'DESCRIPTION_WEB',
     type: DataTypes.STRING,
     allowNull: true,
   },
   created_at: {
+    field: 'CREATED_AT',
     allowNull: true,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
   },
   updated_at: {
+    field: 'UPDATED_AT',
     allowNull: true,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
