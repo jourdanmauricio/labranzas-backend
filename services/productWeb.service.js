@@ -51,8 +51,10 @@ class ProductsWebService {
 
   async findFeatures() {
     const [results] = await sequelize.query(
-      `SELECT pweb.id as id, pweb.prod_id as prod_id, pweb.new_product as new_product, pweb.featured as featured,
-      pweb.best_sellers as best_sellers, pweb.trend as trend, pweb.price as price, pweb.available_quantity as available_quantity, prod.title as title, prod.thumbnail as thumbnail, prod.seller_custom_field as seller_custom_field
+      `SELECT pweb.id "id", pweb.prod_id "prod_id", pweb.new_product "new_product", pweb.featured "featured",
+      pweb.best_sellers "best_sellers", pweb.trend "trend", pweb.price "price",
+      pweb.available_quantity "available_quantity", prod.title "title", prod.thumbnail "thumbnail",
+      prod.seller_custom_field "seller_custom_field"
       FROM PRODUCTS_WEB pweb
       JOIN PRODUCTS prod ON prod.id = pweb.prod_id
       WHERE pweb.status       = 'active'
@@ -63,11 +65,6 @@ class ProductsWebService {
       `
     );
 
-    // const [results, metadata] = await sequelize.query(
-    //   'SELECT pweb."id" FROM ADMIN."products_web" pweb'
-    // );
-
-    console.log(JSON.stringify(results, null, 2));
     return results;
   }
 }
