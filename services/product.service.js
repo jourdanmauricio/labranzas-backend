@@ -153,9 +153,9 @@ class ProductsService {
 
     // const count = await models.Product.count(options);
 
-    if (limit && offset) {
-      (options.limit = limit), (options.offset = offset);
-    }
+    // if (limit && offset) {
+    //   (options.limit = limit), (options.offset = offset);
+    // }
 
     const products = await models.Product.findAll(options);
 

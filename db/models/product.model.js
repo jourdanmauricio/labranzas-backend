@@ -15,10 +15,10 @@ const ProductSchema = {
     allowNull: true,
     defaultValue: '[]',
     get() {
-      return JSON.parse(this.getDataValue('ATTRIBUTES'));
+      return JSON.parse(this.getDataValue('attributes'));
     },
     set(value) {
-      this.setDataValue('ATTRIBUTES', JSON.stringify(value));
+      this.setDataValue('attributes', JSON.stringify(value));
     },
   },
   title: { field: 'TITLE', type: DataTypes.STRING, allowNull: false },
