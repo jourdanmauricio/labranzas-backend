@@ -6,6 +6,7 @@ const { ProductMl, ProductMlSchema } = require('./productMl.model');
 const { ProductWeb, ProductWebSchema } = require('./productWeb.model');
 const { UserMl, UserMlSchema } = require('./userMl.model');
 const { Setting, SettingSchema } = require('./setting.model');
+const { Address, AddressSchema } = require('./address.model');
 // const { Order, OrderSchema } = require('./order.model');
 // const { OrderProduct, OrderProductSchema } = require('./order-product.model');
 
@@ -18,6 +19,7 @@ function setupModels(sequelize) {
   ProductWeb.init(ProductWebSchema, ProductWeb.config(sequelize));
   UserMl.init(UserMlSchema, UserMl.config(sequelize));
   Setting.init(SettingSchema, Setting.config(sequelize));
+  Address.init(AddressSchema, Address.config(sequelize));
   // Order.init(OrderSchema, Order.config(sequelize));
   // OrderProduct.init(OrderProductSchema, OrderProduct.config(sequelize));
 
@@ -29,6 +31,7 @@ function setupModels(sequelize) {
   ProductWeb.associate(sequelize.models);
   // UserMl.associate(sequelize.models);
   // Setting.associate(sequelize.models);
+  Address.associate(sequelize.models);
   // Order.associate(sequelize.models);
 }
 

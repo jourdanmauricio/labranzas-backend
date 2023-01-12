@@ -6,14 +6,14 @@ module.exports = {
   async up(queryInterface) {
     const passHash = await bcrypt.hash(config.superadminPass, 10);
     return queryInterface.bulkInsert(
-      'users',
+      'USERS',
       [
         {
-          email: 'admin@labranzas.com',
-          password: passHash,
-          role: 'superadmin',
-          created_at: new Date(),
-          updated_at: new Date(),
+          EMAIL: 'admin@labranzas.com',
+          PASSWORD: passHash,
+          ROLE: 'superadmin',
+          CREATED_AT: new Date(),
+          UPDATED_AT: new Date(),
         },
       ],
       {}

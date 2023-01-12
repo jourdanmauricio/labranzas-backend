@@ -3,11 +3,11 @@
 module.exports = {
   async up(queryInterface) {
     return queryInterface.bulkInsert(
-      'settings',
+      'SETTINGS',
       [
         {
           // user_id: 21,
-          setting: JSON.stringify({
+          SETTING: JSON.stringify({
             contact: {
               facebook: '',
               twitter: '',
@@ -62,8 +62,8 @@ module.exports = {
               site_id: '',
             },
           }),
-          created_at: new Date(),
-          updated_at: new Date(),
+          CREATED_AT: new Date(),
+          UPDATED_AT: new Date(),
         },
       ],
       {}
