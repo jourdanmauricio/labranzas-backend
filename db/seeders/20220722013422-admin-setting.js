@@ -48,7 +48,7 @@ module.exports = {
               listing_type_id: '',
               condition: '',
               hintSku: false,
-              pictures: [],
+              // pictures: [],
             },
             ml: {
               user_id: null,
@@ -61,6 +61,7 @@ module.exports = {
               permalink: '',
               site_id: '',
             },
+            pictures: [],
           }),
           CREATED_AT: new Date(),
           UPDATED_AT: new Date(),

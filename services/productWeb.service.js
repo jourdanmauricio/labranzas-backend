@@ -53,7 +53,7 @@ class ProductsWebService {
     const [results] = await sequelize.query(
       `SELECT pweb.id "id", pweb.prod_id "prod_id", pweb.new_product "new_product", pweb.featured "featured",
       pweb.best_sellers "best_sellers", pweb.trend "trend", pweb.price "price",
-      pweb.available_quantity "available_quantity", prod.title "title", prod.thumbnail "thumbnail",
+      pweb.available_quantity "available_quantity", prod.title "title", REPLACE(prod.thumbnail, 'http://', 'https://') "thumbnail",
       prod.seller_custom_field "seller_custom_field"
       FROM PRODUCTS_WEB pweb
       JOIN PRODUCTS prod ON prod.id = pweb.prod_id
