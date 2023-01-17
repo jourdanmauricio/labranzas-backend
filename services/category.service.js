@@ -63,12 +63,12 @@ class CategoryService {
 
   async findWebCats() {
     const [results] = await sequelize.query(
-      `SELECT cat.id "id", cat.description_web "name", count(*) "cantidad"
+      `SELECT cat.description_web "name", count(*) "cantidad"
       FROM CATEGORIES cat
       JOIN PRODUCTS prod ON prod.category_id = cat.id
       JOIN PRODUCTS_WEB pweb ON pweb.prod_id = prod.id
       WHERE pweb.status = 'active'
-      GROUP BY cat.id, cat.description_web`
+      GROUP BY cat.description_web`
     );
     return results;
   }
