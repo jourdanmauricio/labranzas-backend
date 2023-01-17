@@ -83,6 +83,17 @@ class CategoryService {
     return category;
   }
 
+  async findOneWeb(description_web) {
+    const category = await models.Category.findOne({
+      include: ['products'],
+      where: { description_web },
+    });
+    if (!category) {
+      throw boom.notFound('Category not found');
+    }
+    return category;
+  }
+
   async update(id, changes) {
     const category = await this.findOne(id);
     const rta = await category.update(changes);

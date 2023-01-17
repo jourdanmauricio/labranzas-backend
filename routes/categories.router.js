@@ -60,6 +60,20 @@ router.get(
   }
 );
 
+router.get(
+  '/categoryweb/:description_web',
+  //validatorHandler(getCategorySchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { description_web } = req.params;
+      const category = await service.findOneWeb(description_web);
+      res.json(category);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
