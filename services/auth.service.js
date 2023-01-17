@@ -46,7 +46,7 @@ class AuthService {
     const token = jwt.sign(payload, config.jwtSecret, {
       expiresIn: '15min',
     });
-    const link = `${config.frontEnd}/recovery-password?token=${token}`;
+    const link = `${config.frontEnd}/recoveryPassword?token=${token}`;
     await service.update(user.id, { recovery_token: token });
     const mail = {
       from: `"Foo Boo 👻" <${config.mailerEmail}>`,

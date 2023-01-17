@@ -30,7 +30,16 @@ router.get(
 
 router.get('/all', async (req, res, next) => {
   try {
-    const categories = await service.findAllCat();
+    const categories = await service.findAllCats();
+    res.json(categories);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/web', async (req, res, next) => {
+  try {
+    const categories = await service.findWebCats();
     res.json(categories);
   } catch (error) {
     next(error);

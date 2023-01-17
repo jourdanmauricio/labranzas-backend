@@ -1,5 +1,6 @@
 const { models } = require('./../libs/sequelize');
 const { Op } = require('sequelize');
+const sequelize = require('../libs/sequelize');
 const boom = require('@hapi/boom');
 
 class CategoryService {
@@ -53,11 +54,23 @@ class CategoryService {
     return rta;
   }
 
-  async findAllCat() {
+  async findAllCats() {
     const categories = await models.Category.findAll({
       attributes: ['id', 'name', 'full_name', 'description_web'],
     });
     return categories;
+  }
+
+  async findWebCats() {
+    const [results] = await sequelize.query(
+      `SELECT cat.id "id", cat.description_web "name", count(*) "cantidad"
+      FROM CATEGORIES cat
+      JOIN PRODUCTS prod ON prod.category_id = cat.id
+      JOIN PRODUCTS_WEB pweb ON pweb.prod_id = prod.id
+      WHERE pweb.status = 'active'
+      GROUP BY cat.id, cat.description_web`
+    );
+    return results;
   }
 
   async findOne(id) {
