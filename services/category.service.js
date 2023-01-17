@@ -84,14 +84,23 @@ class CategoryService {
   }
 
   async findOneWeb(description_web) {
-    const category = await models.Category.findOne({
-      include: ['products'],
-      where: { description_web },
-    });
-    if (!category) {
+    const [results] = await sequelize.query(
+      `SELECT pweb.id "id", pweb.prod_id "prod_id", pweb.new_product "new_product", pweb.featured "featured",
+      pweb.best_sellers "best_sellers", pweb.trend "trend", pweb.price "price",
+      pweb.available_quantity "available_quantity", prod.title "title", REPLACE(prod.thumbnail, 'http://', 'https://') "thumbnail",
+      prod.seller_custom_field "seller_custom_field"
+      FROM PRODUCTS_WEB pweb
+      JOIN PRODUCTS prod ON prod.id = pweb.prod_id
+      JOIN CATEGORIES cat ON cat.id = prod.category_id
+      WHERE pweb.status             = 'active'
+      AND   cat.description_web     = '${description_web}'
+      `
+    );
+
+    if (!results) {
       throw boom.notFound('Category not found');
     }
-    return category;
+    return results;
   }
 
   async update(id, changes) {
