@@ -4,6 +4,7 @@ const config = {
   env: process.env.NODE_ENV || 'dev',
   isProd: process.env.NODE_ENV === 'production',
   frontEnd: process.env.FRONTEND,
+  revalidateToken: process.env.REVALIDATE_TOKEN,
   port: process.env.PORT || 3000,
   ////////
   // BD //

@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const { config } = require('../config/config');
 
 const ProductWebService = require('./../services/productWeb.service');
 const validatorHandler = require('../middlewares/validator.handler');
@@ -8,6 +9,8 @@ const {
   getProductWebSchema,
   updateProductWebSchema,
 } = require('../schemas/productWeb.schema');
+const { checkRoles } = require('../middlewares/auth.handler');
+const { default: axios } = require('axios');
 
 const router = express.Router();
 const service = new ProductWebService();
@@ -20,6 +23,27 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  '/revalidateWeb',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('superadmin'),
+  async (req, res, next) => {
+    try {
+      const url = `${config.frontEnd}/api/revalidate`;
+
+      await axios(url, {
+        headers: {
+          revalidate: config.revalidateToken,
+        },
+      });
+
+      return res.status(200).json({ status: 'OK' });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.put(
   '/:id',
